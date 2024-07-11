@@ -97,22 +97,35 @@ const [linkToSubmit,setLinkToSubmit]=useState("")
 
 
 /****ON CHANGE VALUES****/
+const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+const [isValid,setIsValid]=useState()//email is valid or no
 const covidFormChangeHendler=(e)=>{
+
   const name=e.target.name
   const value=e.target.value
   var isChecked = e.target.checked;
-
+ 
   setCovidFormValues({...covidFormValues,[name]:value})//radio,text
 
+  console.log(e.target.name);
+  if (e.target.name === "email") {
+    if (emailRegex.test(e.target.value)) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  }
   if(e.target.type==="checkbox"){//check
   setCovidFormValues({...covidFormValues,[name]:isChecked})
   if(e.target.checked===true){
       setCovidFormValues({...covidFormValues,[name]:value})
   }
+  
 
-  }
 
 }
+}
+
 
 //PREVIOUS BUTTON
 const backToPreviousStep=(e)=>{
@@ -125,7 +138,9 @@ const backToPreviousStep=(e)=>{
 
 //STEP CLICK NEXT
 const navigate = useNavigate();
+const [isValidEmailSubmit,setIsValidEmailSubmit]=useState("")
 const step1Click=(e)=>{
+  setIsValidEmailSubmit(isValid)
   e.preventDefault()
 
 const alertBackgroundClassCheck=document.getElementsByClassName('formBox')//IF NOTHING SELECT ADD BACKGROUND ON LABEL FIELDS
@@ -218,6 +233,7 @@ if(covidFormValues.steps===8){
 
 
   if(covidFormValues.name&&
+    isValid===true&&
     covidFormValues.phone&&
     covidFormValues.email&&
     covidFormValues.ageRange&&
@@ -389,6 +405,7 @@ axios.post('https://covidform-4a1f1-default-rtdb.europe-west1.firebasedatabase.a
     covidFormValues.steps===8&&<FormStep8
     covidFormChangeHendler={covidFormChangeHendler}
     covidFormValues={covidFormValues}
+    isValidEmailSubmit={isValidEmailSubmit}
 
     />
   }

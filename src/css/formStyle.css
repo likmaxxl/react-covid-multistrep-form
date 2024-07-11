@@ -299,7 +299,12 @@ input[type="radio"] {
   transition: all 0.3s;
   background: linear-gradient(180deg, #ffdd2d 0%, #ffab2d 100%);
 }
-input {
+.emailErr{
+  margin: 3px 0 0 15px;
+  font-size: 12px;
+  font-weight: 200;
+  font-family: sans-serif;
+  color:#DC3545;
 }
 input[type="text"],
 input[type="number"],

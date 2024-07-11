@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
 import PropTypes from 'prop-types'
 
-const  FormStep8= ({covidFormChangeHendler,covidFormValues}) => {
+const  FormStep8= ({covidFormChangeHendler,covidFormValues,isValidEmailSubmit}) => {
+  console.log(isValidEmailSubmit);
   const classAlertBorder={
     background: "rgba(150, 150, 150, 0.1)",
     border:"2px solid #f5c6cb"
@@ -28,7 +29,7 @@ const  FormStep8= ({covidFormChangeHendler,covidFormValues}) => {
       value={covidFormValues.phone}
       placeholder="Phone Number"
       onChange={covidFormChangeHendler}
-      autoComplete="off"
+    
     />
   </div>
 </div>
@@ -36,12 +37,15 @@ const  FormStep8= ({covidFormChangeHendler,covidFormValues}) => {
   <div className="formBox">
     <input
       type="email"
+ 
       name="email"
       value={covidFormValues.email}
       placeholder="Email"
 onChange={covidFormChangeHendler}
 autoComplete="off"
+required
     />
+    <p className="emailErr">{isValidEmailSubmit===false?"Email is not valid *":""}</p>
   </div>
   <div className="formBox">
     <select
