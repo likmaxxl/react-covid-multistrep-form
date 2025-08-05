@@ -287,8 +287,10 @@ if(covidFormValues.steps===8){
       ]
       }
       setDataForJson(allValuesForDb)
+      
 
-axios.post('https://covidform-4a1f1-default-rtdb.europe-west1.firebasedatabase.app/users.json',allValuesForDb)//add users data to dataBase
+
+axios.post('https://6891df0b447ff4f11fbe1d02.mockapi.io/patients',allValuesForDb)//add users data to dataBase
 .then((resp)=>{console.log("")})
      navigate('/submitSuccess');
 

@@ -26,7 +26,7 @@ setPatient(value.toLowerCase())
 
 useEffect(()=>{
     setLoading(true)
-  axios.get('https://covidform-4a1f1-default-rtdb.europe-west1.firebasedatabase.app/users.json')
+  axios.get('https://6891df0b447ff4f11fbe1d02.mockapi.io/patients')
   .then((res)=>{
     const fetchedUsers=[]
   for (const key in res.data) {
